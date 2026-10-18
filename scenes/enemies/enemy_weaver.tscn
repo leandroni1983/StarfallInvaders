@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_type2.gd" id="2_weav"]
+
+[sub_resource type="RectangleShape2D" id="shape_weaver"]
+size = Vector2(20, 16)
+
+[node name="EnemyWeaver" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("2_weav")
+health = 2
+speed = 42.0
+points = 30
+shoot_interval = 3.6
+can_shoot = true
+amplitude = 48.0
+frequency = 2.4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, 10)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.6
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_weaver")

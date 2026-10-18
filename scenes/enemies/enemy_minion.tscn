@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_minion.gd" id="1_minion"]
+
+[sub_resource type="RectangleShape2D" id="shape_minion"]
+size = Vector2(14, 14)
+
+[node name="EnemyMinion" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_minion")
+health = 1
+speed = 130.0
+points = 15
+shoot_interval = 2.8
+can_shoot = true
+amplitude = 14.0
+frequency = 6.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.8
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_minion")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_sniper.gd" id="1_sniper"]
+
+[sub_resource type="RectangleShape2D" id="shape_sniper"]
+size = Vector2(18, 18)
+
+[node name="EnemySniper" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_sniper")
+health = 2
+speed = 54.0
+points = 40
+shoot_interval = 2.4
+can_shoot = true
+hover_y = 170.0
+hover_time = 2.6
+drift = 18.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, 10)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.4
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_sniper")

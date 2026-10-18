@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/systems/starfield.gd" id="2_star"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="3_plr"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4_hud"]
+
+[node name="Main" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_main")
+
+[node name="World" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="World"]
+position = Vector2(180, 320)
+
+[node name="Starfield" type="Node2D" parent="World"]
+script = ExtResource("2_star")
+
+[node name="Enemies" type="Node2D" parent="World" groups=["enemy_layer"]]
+
+[node name="Bullets" type="Node2D" parent="World" groups=["bullet_layer"]]
+
+[node name="Items" type="Node2D" parent="World" groups=["item_layer"]]
+
+[node name="Effects" type="Node2D" parent="World" groups=["effect_layer"]]
+
+[node name="Player" parent="World" instance=ExtResource("3_plr")]
+position = Vector2(180, 570)
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]

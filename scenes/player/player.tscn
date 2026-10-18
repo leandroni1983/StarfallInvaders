@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_plyr"]
+
+[sub_resource type="RectangleShape2D" id="shape_player"]
+size = Vector2(12, 14)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource("1_plyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+scale = Vector2(2.5, 2.5)
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.22
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_player")

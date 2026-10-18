@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/player_bullet.gd" id="1_pbul"]
+
+[sub_resource type="CircleShape2D" id="shape_pbul"]
+radius = 3.5
+
+[node name="PlayerBullet" type="Area2D"]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_pbul")
+speed = 520.0
+damage = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_pbul")

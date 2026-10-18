@@ -1,0 +1,22 @@
+# Godot 4
+.godot/
+
+# Artefactos generados por las pruebas
+tests/screenshot.png
+
+# Salidas de exportación
+/build/
+*.apk
+*.aab
+*.pck
+export_presets.cfg
+
+# Claves de firma y credenciales (NUNCA al repositorio)
+*.keystore
+*.jks
+*.p12
+export_credentials.cfg
+
+# Plantilla de build Android (Gradle): pesada y regenerable.
+# Si falta, reinstalar desde el editor: Proyecto > Instalar plantilla de compilación de Android.
+/android/build/

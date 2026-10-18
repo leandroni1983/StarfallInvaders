@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_type1.gd" id="1_grunt"]
+
+[sub_resource type="RectangleShape2D" id="shape_grunt"]
+size = Vector2(18, 16)
+
+[node name="EnemyGrunt" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_grunt")
+health = 2
+speed = 60.0
+points = 20
+shoot_interval = 4.6
+can_shoot = true
+amplitude = 22.0
+frequency = 3.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, 10)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 4.6
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_grunt")

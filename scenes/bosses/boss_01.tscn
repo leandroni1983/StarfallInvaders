@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/bosses/boss_01.gd" id="1_boss"]
+
+[sub_resource type="RectangleShape2D" id="shape_boss"]
+size = Vector2(118, 118)
+
+[node name="Boss01" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_boss")
+health = 50
+speed = 70.0
+points = 500
+shoot_interval = 2.2
+can_shoot = true
+minion_interval = 4.0
+minions_per_spawn = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture_filter = 2
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, 58)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.2
+one_shot = false
+autostart = false
+
+[node name="MinionTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_boss")
