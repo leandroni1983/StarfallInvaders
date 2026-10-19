@@ -1,4 +1,4 @@
-extends EnemyBase
+﻿extends EnemyBase
 class_name Boss04
 
 ## Jefe 04 — "BOSS 1" (sprite boss_01_sprite.png)
@@ -18,7 +18,18 @@ const MINION := preload("res://scenes/enemies/enemy_minion.tscn")
 @export var fan_bullets: int = 5
 @export var fan_spread_deg: float = 46.0
 @export var minion_interval: float = 4.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
 @export var minions_per_spawn: int = 2
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
+@export var minion_speed_bonus: float = 0.0
 
 var _origin_x: float = 0.0
 var _entered: bool = false
@@ -74,6 +85,7 @@ func _on_minion_timeout() -> void:
 	_spawn_minions()
 
 func _spawn_minions() -> void:
+@export var minion_speed_bonus: float = 0.0
 	var count := maxi(minions_per_spawn, 1)
 	var layer := get_tree().get_first_node_in_group("enemy_layer")
 	if layer == null:
@@ -82,7 +94,7 @@ func _spawn_minions() -> void:
 		return
 	for i in count:
 		var minion: Area2D = MINION.instantiate()
-		minion.speed += minion_speed_bonus
+		minion.speed += 0.0
 		layer.add_child(minion)
 		var offset_x := (float(i) - (float(count) - 1.0) * 0.5) * 34.0
 		minion.global_position = global_position + Vector2(offset_x, 44.0)
