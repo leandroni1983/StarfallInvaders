@@ -110,16 +110,18 @@ muerte centralizados.
 
 ## Jefes
 
-Los tres jefes derivan de `EnemyBase` y comparten estructura (`Sprite2D`,
+Los seis jefes derivan de `EnemyBase` y comparten estructura (`Sprite2D`,
 `FirePoint`, `ShootTimer`, `MinionTimer`, `CollisionShape2D`), pero cada uno tiene
 su propio patrón. `main.gd` rota entre ellos según el ciclo:
 
 ```gdscript
-var boss_scene := BOSS                      # ciclo % 3 == 0
-if (_cycle % 3) == 1:
-    boss_scene = BOSS2
-elif (_cycle % 3) == 2:
-    boss_scene = BOSS3
+var boss_scene := BOSS                      # ciclo % 6 == 0
+match _cycle % 6:
+    1: boss_scene = BOSS2
+    2: boss_scene = BOSS3
+    3: boss_scene = BOSSCOLIN               # BOSS COLIN sigue al 3ro
+    4: boss_scene = BOSS4
+    5: boss_scene = BOSS5
 ```
 
 | Jefe | Script / Escena | Sprite | Vida | Puntos | Cadencia | Patrón |
@@ -127,6 +129,9 @@ elif (_cycle % 3) == 2:
 | **JUAMPI EVIL** | `boss_01.gd` / `boss_01.tscn` | `boss_juampi_evil.png` | 50 | 500 | 2.2 s | abanico de 5 balas |
 | **SERIAL TE** | `boss_02.gd` / `boss_02.tscn` | `serial_te.png` | 60 | 700 | 1.8 s | salvas de 3 × 4 balas |
 | **FAROL FAINA** | `boss_03.gd` / `boss_03.tscn` | `farol_faina.png` | 70 | 800 | 1.6 s | abanico de 6 balas |
+| **BOSS COLIN** | `boss_colin.gd` / `boss_colin.tscn` | `boss_colin.png` | 55 | 600 | 2.0 s | abanico de 5 balas |
+| **BOSS 1** | `boss_04.gd` / `boss_04.tscn` | `boss_01_sprite.png` | 50 | 500 | 2.2 s | abanico de 5 balas |
+| **EL INFE** | `boss_05.gd` / `boss_05.tscn` | `boss_infe.png` | 60 | 700 | 1.8 s | salvas de 3 × 4 balas |
 
 ### Frases de entrada (`intro_message`)
 
@@ -135,6 +140,18 @@ Aparecen titilando sobre la partida al entrar el jefe:
 - **JUAMPI EVIL** → `"AVERIGUEMOS CUAL ES TU PERFIL\nESTOY SEGURO QUE SOS PURO HUMO!!!"`
 - **SERIAL TE** → `"VAMOS A TOMAR UN TE\nVENI VENI"`
 - **FAROL FAINA** → `"LA QUIERES CON EXTRA QUESO MI AMORRRRRR JAJAJAJA"`
+- **BOSS COLIN** → `"VAMOS A AVERIGUAR TU PERFIIILLLLLL!!"`
+- **BOSS 1** → `"VAMOS A PROBAR CUAL ES TU PERFIIILLL"`
+- **EL INFE** → `"DONDE ESTA MI PERNUANITA , DONDE ?"`
+
+### Mensajes al derrotarlos (`soul_message`)
+
+Al ser vencidos, algunos jefes sueltan un mensaje (y su forma liberada, si
+tienen `soul_texture_path`):
+
+- **JUAMPI EVIL** → ángel `boss_juampi_angel.png` + `"¡GRACIAS! ¡GRACIAS! ♥\nROMPISTE EL MALEFICIO\nQUE ME TENÍA POSEÍDO"`
+- **BOSS 1** → `"ESO NO ERA UN ELIXIIRRRR!!!"`
+- **EL INFE** → `"DONDE ESTA MI PERNUANITA , DONDE ?"` (repite su frase)
 
 ### Navecitas (minions)
 
@@ -186,14 +203,16 @@ res://
 │   ├── effects/      explosion.tscn
 │   ├── ui/           hud.tscn, start screen, pausa
 │   └── bosses/       boss_01.tscn (Juampi Evil), boss_02.tscn (Serial Te),
-│                     boss_03.tscn (Farol Faina)
+│                     boss_03.tscn (Farol Faina), boss_colin.tscn (BOSS Colin),
+│                     boss_04.tscn (BOSS 1), boss_05.tscn (EL INFE)
 ├── scripts/
 │   ├── autoload/     GameManager, SaveManager, AudioManager, SpriteFactory
 │   ├── main/         main.gd
 │   ├── player/       player.gd
 │   ├── enemies/      enemy_base.gd, enemy_type1.gd, enemy_type2.gd,
 │   │                 enemy_minion.gd, enemy_diver.gd, enemy_sniper.gd
-│   ├── bosses/       boss_01.gd, boss_02.gd, boss_03.gd, boss_soul.gd
+│   ├── bosses/       boss_01.gd, boss_02.gd, boss_03.gd, boss_colin.gd,
+│   │                 boss_04.gd, boss_05.gd, boss_soul.gd
 │   ├── combat/       player_bullet.gd, enemy_bullet.gd
 │   ├── items/        powerup.gd
 │   ├── systems/      starfield.gd, explosion.gd
@@ -271,11 +290,12 @@ el fondo estelar son **originales** y se generan por código:
 - Los jefes usan imágenes con transparencia real:
   `assets/sprites/bosses/boss_juampi_evil.png` (Juampi Evil),
   `boss_juampi_angel.png` (el ángel del alma liberada),
-  `serial_te.png` (Serial Te) y `farol_faina.png` (Farol Faina). Provienen de
-  los stickers originales en `source/*.webp`, convertidos a PNG con Pillow:
+  `serial_te.png` (Serial Te), `farol_faina.png` (Farol Faina),
+  `boss_colin.png` (BOSS Colin), `boss_01_sprite.png` (BOSS 1) y
+  `boss_infe.png` (EL INFE). Provienen de los stickers originales en
+  `source/*.webp`, convertidos a PNG con Pillow:
   `python -c "from PIL import Image; Image.open('x.webp').convert('RGBA').save('x.png')"`.
-- `boss_01_sprite.png` y `boss_infe.png` quedan como arte histórico sin uso.
-  El material original vive en `source/`, que Godot ignora (`.gdignore`) porque
+- El material original vive en `source/`, que Godot ignora (`.gdignore`) porque
   sus WebP no son importables.
 - `starfield.gd` y `explosion.gd` dibujan fondo y explosiones con `_draw()`
   (compatible con el renderizador *Compatibility*).
@@ -420,15 +440,23 @@ Las plantillas de exportación de Godot, JDK 17 y el Android SDK configurados en
 el editor. Ver la sección [Android](#android).
 
 **¿Cómo agrego un jefe nuevo?**
-1. Copiar `scripts/bosses/boss_03.gd` a `boss_04.gd` y ajustar `TEXTURE_PATH`,
-   `boss_name` e `intro_message`.
-2. Duplicar `scenes/bosses/boss_03.tscn`, apuntar el script y el sprite, y ajustar
+1. Copiar un script de jefe existente (p. ej. `scripts/bosses/boss_colin.gd`) a
+   `boss_06.gd` y ajustar `TEXTURE_PATH`, `boss_name` e `intro_message`.
+2. Duplicar su `.tscn`, apuntar el script y el sprite, y ajustar
    vida/puntos/cadencia.
-3. Añadir la constante y la rotación del ciclo en `main.gd` (`_spawn_boss`).
+3. Añadir la constante y la rotación del ciclo en `main.gd` (`_spawn_boss`,
+   ampliando `_cycle % 6` a `% 7`).
 4. Actualizar `README.md`, `ROADMAP.md`, `tools/check_textures.gd` y los tests.
 
 ## Historial de cambios
 
+- **BOSS COLIN** (`boss_colin.gd`, sprite `boss_colin.png`) entra en la rotación
+  **justo después del 3er jefe** (`_cycle % 6 == 3`) con la frase
+  `"VAMOS A AVERIGUAR TU PERFIIILLLLLL!!"`.
+- **Nuevos jefes BOSS 1 y EL INFE** (`boss_04` / `boss_05`): BOSS 1
+  (`boss_01_sprite.png`) dice `"VAMOS A PROBAR CUAL ES TU PERFIIILLL"` y al
+  morir `"ESO NO ERA UN ELIXIIRRRR!!!"`; EL INFE (`boss_infe.png`) dice y
+  repite `"DONDE ESTA MI PERNUANITA , DONDE ?"`.
 - **Renombrado de jefes y nuevas frases**
   - `BOSS02` pasa a llamarse **SERIAL TE** (sprite `serial_te.png`) con la frase
     `"VAMOS A TOMAR UN TE / VENI VENI"`.
