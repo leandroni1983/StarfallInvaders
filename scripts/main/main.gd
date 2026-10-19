@@ -11,6 +11,9 @@ const ENEMY_SNIPER := preload("res://scenes/enemies/enemy_sniper.tscn")
 const BOSS := preload("res://scenes/bosses/boss_01.tscn")
 const BOSS2 := preload("res://scenes/bosses/boss_02.tscn")
 const BOSS3 := preload("res://scenes/bosses/boss_03.tscn")
+const BOSSCOLIN := preload("res://scenes/bosses/boss_colin.tscn")
+const BOSS4 := preload("res://scenes/bosses/boss_04.tscn")
+const BOSS5 := preload("res://scenes/bosses/boss_05.tscn")
 const POWERUP := preload("res://scenes/items/powerup.tscn")
 const EXPLOSION := preload("res://scenes/effects/explosion.tscn")
 
@@ -423,12 +426,15 @@ func _reset_shake() -> void:
 # Jefe
 # ---------------------------------------------------------------------------
 func _spawn_boss() -> void:
-	# Cada ciclo rota entre los tres jefes: Juampi Evil, Serial Te y Farol Faina.
+	# Cada ciclo rota entre los 6 jefes: Juampi Evil, Serial Te, Farol Faina,
+	# BOSS COLIN (justo después del 3ro), BOSS 1 y EL INFE.
 	var boss_scene := BOSS
-	if (_cycle % 3) == 1:
-		boss_scene = BOSS2
-	elif (_cycle % 3) == 2:
-		boss_scene = BOSS3
+	match _cycle % 6:
+		1: boss_scene = BOSS2
+		2: boss_scene = BOSS3
+		3: boss_scene = BOSSCOLIN
+		4: boss_scene = BOSS4
+		5: boss_scene = BOSS5
 	var boss: Area2D = boss_scene.instantiate()
 	# Escalado de dificultad del jefe según el ciclo y el modo elegido.
 	var hard_mult := 1.3 if GameManager.is_hard() else 1.0

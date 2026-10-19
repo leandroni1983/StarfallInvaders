@@ -9,8 +9,10 @@ const PATHS := [
 	"res://assets/sprites/bosses/boss_juampi_evil.png",
 	"res://assets/sprites/bosses/boss_juampi_angel.png",
 	"res://assets/sprites/bosses/boss_infe.png",
+	"res://assets/sprites/bosses/boss_01_sprite.png",
 	"res://assets/sprites/bosses/serial_te.png",
 	"res://assets/sprites/bosses/farol_faina.png",
+	"res://assets/sprites/bosses/boss_colin.png",
 	"res://assets/sprites/ui/title_logo.png",
 	"res://assets/sprites/ui/app_icon.png",
 ]
