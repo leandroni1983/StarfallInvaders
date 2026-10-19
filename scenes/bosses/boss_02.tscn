@@ -16,6 +16,8 @@ shoot_interval = 1.8
 can_shoot = true
 minion_interval = 3.0
 minions_per_spawn = 3
+boss_name = "SERIAL TE"
+intro_message = "VAMOS A TOMAR UN TE\nVENI VENI"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

@@ -1,22 +1,22 @@
 extends EnemyBase
 class_name Boss02
 
-## Jefe 02 — "EL INFE".
+## Jefe 02 — "SERIAL TE".
 ##
-## Segundo jefe de cada ciclo (aparece cuando el ciclo es impar). Usa el sprite
-## boss_infe.png con patrón de disparo en salvas y minions diferentes al Boss01.
+## Segundo de la rotación de jefes (aparece en el ciclo % 3 == 1). Usa el sprite
+## serial_te.png con patrón de disparo en salvas y minions diferentes al Boss01.
 ## Al entrar suelta su frase característica, titilando.
 
 signal health_changed(current: int, maximum: int)
 
-const TEXTURE_PATH := "res://assets/sprites/bosses/boss_infe.png"
+const TEXTURE_PATH := "res://assets/sprites/bosses/serial_te.png"
 const MINION := preload("res://scenes/enemies/enemy_minion.tscn")
 
 ## Nombre que muestra el aviso de advertencia.
-@export var boss_name: String = "EL INFE"
+@export var boss_name: String = "SERIAL TE"
 
 ## Frase que aparece titilando al entrar el jefe (vacía = no mostrar nada).
-@export var intro_message: String = "DAME MI PERUANITA\nAH AH AH"
+@export var intro_message: String = "VAMOS A TOMAR UN TE\nVENI VENI"
 
 ## Forma liberada: al morir, este sprite aparece en su lugar con estrellitas.
 ## Vacío = el jefe simplemente explota.

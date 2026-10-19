@@ -1,0 +1,40 @@
+﻿[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/bosses/boss_03.gd" id="1_gor"]
+
+[sub_resource type="RectangleShape2D" id="shape_boss"]
+size = Vector2(128, 128)
+
+[node name="Boss03" type="Area2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_gor")
+health = 70
+speed = 70.0
+points = 800
+shoot_interval = 1.6
+can_shoot = true
+minion_interval = 2.8
+minions_per_spawn = 3
+boss_name = "FAROL FAINA"
+intro_message = "LA QUIERES CON EXTRA QUESO MI AMORRRRRR JAJAJAJA"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture_filter = 2
+
+[node name="FirePoint" type="Marker2D" parent="."]
+position = Vector2(0, 64)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = false
+autostart = false
+
+[node name="MinionTimer" type="Timer" parent="."]
+wait_time = 2.8
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_boss")

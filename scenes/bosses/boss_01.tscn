@@ -16,6 +16,8 @@ shoot_interval = 2.2
 can_shoot = true
 minion_interval = 4.0
 minions_per_spawn = 2
+boss_name = "JUAMPI EVIL"
+intro_message = "AVERIGUEMOS CUAL ES TU PERFIL\nESTOY SEGURO QUE SOS PURO HUMO!!!"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)

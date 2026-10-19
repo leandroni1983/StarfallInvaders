@@ -14,6 +14,9 @@ class_name Boss01
 ##
 ## El sprite se toma de assets/sprites/bosses/boss_juampi_evil.png. Si el
 ## archivo no existe, cae a un sprite provisional generado por código.
+##
+## Frase de entrada: "AVERIGUEMOS CUAL ES TU PERFIL / ESTOY SEGURO QUE SOS
+## PURO HUMO!!!".
 
 signal health_changed(current: int, maximum: int)
 
@@ -24,7 +27,7 @@ const MINION := preload("res://scenes/enemies/enemy_minion.tscn")
 @export var boss_name: String = "JUAMPI EVIL"
 
 ## Frase que aparece titilando al entrar el jefe (vacía = no mostrar nada).
-@export var intro_message: String = ""
+@export var intro_message: String = "AVERIGUEMOS CUAL ES TU PERFIL\nESTOY SEGURO QUE SOS PURO HUMO!!!"
 
 ## Forma liberada: al morir, este sprite aparece en su lugar con estrellitas y
 ## corazoncitos. Vacío = el jefe simplemente explota.

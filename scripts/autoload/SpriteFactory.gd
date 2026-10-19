@@ -60,6 +60,15 @@ const PALETTE_SNIPER := {
 	"Y": Color("66e0ff"), # acento
 }
 
+# "Navecita" de Farol Faina: porción de pizza (borde, queso y pepperoni).
+const PALETTE_PIZZA := {
+	"B": Color("8a4b1e"), # borde tostado
+	"Q": Color("d9922f"), # masa
+	"Y": Color("ffd23f"), # queso
+	"O": Color("ff9a2e"), # queso fundido
+	"R": Color("d62b2b"), # pepperoni
+}
+
 const PALETTE_PU_WEAPON := {
 	"C": Color("2fd6ff"),
 	"L": Color("eafcff"),
@@ -239,6 +248,20 @@ const STAR_SMALL: PackedStringArray = [
 	"W",
 ]
 
+# PIZZA: porción de pizza (triángulo con borde crujiente y pepperoni). Es el
+# aspecto de las "navecitas" que lanza el jefe Farol Faina.
+const PIZZA_SLICE: PackedStringArray = [
+	"BBBBBBBBB",
+	"QQQQQQQQQ",
+	".YYYYYYY.",
+	".YYRYYYY.",
+	"..YYYYY..",
+	"..YRYRY..",
+	"...YYY...",
+	"...YOY...",
+	"....Y....",
+]
+
 # ---------------------------------------------------------------------------
 # API pública
 # ---------------------------------------------------------------------------
@@ -274,6 +297,9 @@ func shield_ring() -> Texture2D:
 
 func bullet_player() -> Texture2D:
 	return _make("bullet_player", BULLET_PLAYER, PALETTE_PLAYER)
+
+func pizza_slice() -> Texture2D:
+	return _make("pizza_slice", PIZZA_SLICE, PALETTE_PIZZA)
 
 func bullet_enemy() -> Texture2D:
 	return _make("bullet_enemy", BULLET_ENEMY, PALETTE_GRUNT)

@@ -8,11 +8,15 @@ class_name EnemyMinion
 
 @export var amplitude: float = 14.0
 @export var frequency: float = 6.0
+## "Navecita" con forma de porción de pizza (la usa Farol Faina).
+@export var pizza_slice: bool = false
 
 var _origin_x: float = 0.0
 var _phase: float = 0.0
 
 func _sprite_texture() -> Texture2D:
+	if pizza_slice:
+		return SpriteFactory.pizza_slice()
 	return SpriteFactory.enemy_minion()
 
 func _ready() -> void:
