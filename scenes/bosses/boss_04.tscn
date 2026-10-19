@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+﻿[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/bosses/boss_04.gd" id="1_boss4"]
 
@@ -16,9 +16,9 @@ shoot_interval = 2.2
 can_shoot = true
 minion_interval = 4.0
 minions_per_spawn = 2
-boss_name = "BOSS 1"
-intro_message = "VAMOS A PROBAR CUAL ES TU PERFIIILLL"
-soul_message = "ESO NO ERA UN ELIXIIRRRR!!!"
+boss_name = "BOSS COLIN"
+intro_message = "VAMOS A AVERIGUAR TU PERFIIILLLLLL!!"
+soul_message = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
